@@ -1,0 +1,212 @@
+create table employee(
+	emp_id integer,
+	emp_name varchar(20),
+	emp_salary integer,
+	emp_city  varchar(25)
+	
+  );
+  
+  
+  INSERT INTO employee values(201,'abhay',2500,'gurgaon');
+  select * from  employee;
+  
+ INSERT INTO employee values(202,'ankit',45000,'delhi');
+  INSERT INTO employee values(203,'bheem',30000,'jaipur');
+  INSERT INTO employee values(204,'ram',29000,'mumbai');
+INSERT INTO employee values(205,'sumit',4000,'kolkata');
+	   
+select * from  employee;
+
+SELECT * FROM employee WHERE emp_salary='29000'AND emp_id='204';
+
+UPDATE employee SET emp_salary ='25000' WHERE emp_id='201';
+
+SELECT * FROM employee WHERE emp_salary='29000'or emp_id='205';
+SELECT * FROM employee WHERE emp_salary between 29000 and 30000;
+SELECT * FROM employee WHERE emp_city IN ('delhi', 'mumbai', 'kolkate');
+
+SELECT * FROM employee WHERE NOT emp_city='delhi';
+select * From employee where emp_city='delhi' or emp_city='mumbai';
+
+
+2nd day 
+create table employee(
+	emp_id integer,
+	emp_name varchar(20),
+	emp_salary integer,
+	emp_city  varchar(25),
+     PRIMARY KEY (emp_id)
+	
+  );
+  
+  
+  INSERT INTO employee values(201,'abhay',2500,'gurgaon');
+  select * from  employee;
+  
+ INSERT INTO employee values(202,'ankit',45000,'delhi');
+  INSERT INTO employee values(203,'bheem',30000,'jaipur');
+  INSERT INTO employee values(204,'ram',29000,'mumbai');
+INSERT INTO employee values(205,'sumit',4000,'kolkata');
+	   
+select * from  employee;
+ ALTER TABLE employee ADD PRIMARY KEY (emp_id);
+--  more than one primary give using constaint
+-- ALTER TABLE employee ADD CONSTRAINT  PRIMARY KEY (ID,LastName);
+ 
+ select * from employee;
+
+ALTER TABLE employee DROP CONSTRAINT employee_pkey;
+select * from employee;
+ ALTER TABLE employee ADD  PRIMARY KEY (emp_id);
+ select * from employee ;
+--  we set not null value 
+  ALTER TABLE employee ALTER COLUMN emp_name SET NOT NULL;
+  select * from employee
+--   we inset the null value
+  insert into employee values(275,null,234,'raj');
+-- then we drop the null value 
+Alter table employee alter column emp_name drop NOT NULL;
+
+select * from employee
+
+
+
+......................................
+create table employee(
+	emp_id integer,
+	emp_name varchar(20),
+	emp_salary integer,
+	emp_city  varchar(25)
+);
+ALTER TABLE employee DROP CONSTRAINT employee_pkey;
+select * from employee;
+
+Alter table employee alter column emp_name drop NOT NULL;
+
+DELETE FROM employee WHERE emp_id='275';
+select * from employee
+  
+--  ALTER TABLE employee ALTER COLUMN emp_roll SET DEFAULT 'Sandnes';
+
+--  alter column col_name drop default
+  select * from employee;
+--   check constaint 
+ALTER TABLE employee ADD CONSTRAINT CHECK (emp_slary>=29000 OR emp_salay<=45000);
+
+Alter table employee add emp_age int;
+-- delete the any row 
+DELETE FROM employee WHERE emp_id='18';
+-- insert the value
+insert into employee values(275,'vaibhav',50000,'mgs',18)
+select * from employee 
+
+
+
+
+
+
+
+
+
+
+
+select * from employee;
+
+
+#truncate
+
+
+
+-- Aggreate functions
+
+#create table employee(
+	emp_id integer,
+	emp_name varchar(20),
+	emp_salary integer,
+	emp_city  varchar(25)
+	
+  );
+  
+  
+  INSERT INTO employee values(201,'abhay',2500,'gurgaon');
+  select * from  employee;
+  
+ INSERT INTO employee values(202,'ankit',45000,'delhi');
+  INSERT INTO employee values(203,'bheem',30000,'jaipur');
+  INSERT INTO employee values(204,'ram',29000,'mumbai');
+INSERT INTO employee values(205,'sumit',4000,'kolkata');
+	   
+select * from  employee;
+
+-- Aggreate functions
+-- 1-count
+SELECT COUNT(*)  FROM employee;  
+-- also we use contions statemants
+SELECT COUNT(*)  FROM employee where emp_salary>=29000;
+-- : COUNT() with DISTINCT
+SELECT COUNT(DISTINCT emp_age)  FROM employee;    
+-- Example: COUNT() with GROUP BY
+SELECT emp_salary, COUNT(*)  FROM employee  GROUP BY emp_salary; 
+-- having
+SELECT emp_salary, COUNT(*)  FROM employee  GROUP BY emp_salary HAVING COUNT(*)>2;  
+
+
+-- 2. SUM Function
+select sum(emp_salary) from employee;
+-- Example: SUM() with WHERE
+SELECT SUM(emp_salary) FROM employee WHERE emp_salary>=30000;  
+SELECT SUM(emp_salary) FROM employee WHERE emp_salary>=30000;  
+
+SELECT emp_salary,sum(emp_salary)  FROM employee where emp_salary>30000  GROUP BY emp_salary; 
+
+
+-- 3. AVG function
+SELECT AVG(emp_salary) FROM employee;  
+select avg(emp_salary) from employee where (emp_salary>25000 and emp_salary <30000);
+
+
+-- max function
+SELECT max(emp_salary) FROM employee;  
+
+-- min function
+SELECT min(emp_salary) FROM employee;
+
+
+#join  
+
+create table employee1(
+	emp_id int,
+	emp_name varchar(20),
+	emp_city varchar(20),
+	emp_salary int,
+	emp_age int
+);
+
+insert into employee1 values(1,'angelina','chicago',20000,30);
+insert into employee1 values(2,'robert','austin',30000,26);
+insert into employee1 values(3,'christian','denver',10000,42);
+insert into employee1 values(4,'kristen','washington',50000,29);
+insert into employee1 values(5,'russell','los angels',20000,36);
+insert into employee1 values(6,'marry','canada',60000,48);
+select * from employee1
+
+create table project(
+	p_no int,
+	p_id int,
+	p_dept varchar(20)
+	
+);
+insert into project values(101,1,'testing');
+insert into project values(102,2,'development');
+insert into project values(103,3,'designing');
+insert into project values(104,4,'development');
+
+select * from project;
+
+#inner join
+SELECT employee1.emp_id,project.p_id FROM employee1 INNER JOIN project ON employee1.emp_id = project.p_id;
+
+SELECT employee1.emp_name,project.p_dept FROM employee1 INNER JOIN project ON employee1.emp_id = project.p_id;
+
+#left join
+SELECT employee1.emp_name,project.p_dept FROM employee1 LEFT JOIN project ON employee1.emp_id = project.p_id;
