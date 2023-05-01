@@ -187,6 +187,51 @@ insert into employee1 values(2,'robert','austin',30000,26);
 insert into employee1 values(3,'christian','denver',10000,42);
 insert into employee1 values(4,'kristen','washington',50000,29);
 insert into employee1 values(5,'russell','los angels',20000,36);
+
+
+
+create table employee(
+	emp_id integer,
+	emp_name varchar(20),
+	emp_salary integer,
+	emp_city  varchar(25)
+	
+  );
+  
+  
+  INSERT INTO employee values(201,'abhay',2500,'gurgaon');
+  select * from  employee;
+  
+ INSERT INTO employee values(202,'ankit',45000,'delhi');
+  INSERT INTO employee values(203,'bheem',30000,'jaipur');
+  INSERT INTO employee values(204,'ram',29000,'mumbai');
+INSERT INTO employee values(205,'sumit',4000,'kolkata');
+	   
+select * from  employee;
+
+
+#index 
+
+CREATE INDEX index_name
+ON employee (emp_id);
+
+CREATE INDEX index1
+ON employee (emp_salary);
+
+  
+select * from employee
+
+EXPLAIN
+select * from employee where emp_salary='30000'
+
+
+
+#view 
+create view employee_data
+as select emp_id,emp_name,emp_salary from employee where emp_salary=
+'30000'
+
+select * from employee_data
 insert into employee1 values(6,'marry','canada',60000,48);
 select * from employee1
 
