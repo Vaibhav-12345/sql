@@ -209,7 +209,7 @@ INSERT INTO employee values(205,'sumit',4000,'kolkata');
 	   
 select * from  employee;
 
-
+3rd day
 #index 
 
 CREATE INDEX index_name
